@@ -15,17 +15,17 @@ public class ClientClass {
 		DataOutputStream dataOutputStream;
 		
 		try {
-			scanner = new Scanner(System.in);
-			System.out.println("Type what you have to do");
-			todo = scanner.nextLine();
-			
 			socket = new Socket("localhost", 9000);
 			outputStream = socket.getOutputStream();
 			dataOutputStream = new DataOutputStream(outputStream);
-			dataOutputStream.writeUTF(todo);
-			dataOutputStream.flush();
+			scanner = new Scanner(System.in);
 			
-			scanner.close();
+			while (true) {
+				System.out.println("Type what you have to do");
+				todo = scanner.nextLine();
+				dataOutputStream.writeUTF(todo);
+				dataOutputStream.flush();
+			}
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
